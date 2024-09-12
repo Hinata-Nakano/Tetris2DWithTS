@@ -1,0 +1,33 @@
+/* styles.css */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #000;
+}
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(10, 30px);
+    grid-template-rows: repeat(20, 30px);
+    gap: 1px;
+    background-color: #333;
+}
+
+#game-board div {
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+}
+/* styles.css */
+#game-board div.active {
+    background-color: cyan;
+}
+
+#game-board div.taken {
+    width: 30px;
+    height: 30px;
+    background-color: #f90101;
+}

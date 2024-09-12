@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "es5",           // コンパイル先のJavaScriptバージョン
+    "module": "CommonJS",       // モジュールシステム
+    "outDir": "./dist",         // 出力先ディレクトリ
+    "rootDir": "./src",         // ソースファイルのルートディレクトリ
+    "strict": true              // 厳格な型チェック
+  },
+  "include": ["src/**/*.ts"],   // srcディレクトリ内の全てのTypeScriptファイルをコンパイル対象とする
+  "exclude": ["node_modules"]   // node_modulesディレクトリは除外
+}
