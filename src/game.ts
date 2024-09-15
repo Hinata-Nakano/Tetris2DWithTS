@@ -1,5 +1,6 @@
 // game.ts
 import { gameBoard } from './gameBoard.js';
+import { moveDown, draw } from './movedown.js';
 
 const width = 10; // ボードの横幅 (10列)
 let currentPosition = 4; // 初期のテトリミノの位置
@@ -29,26 +30,10 @@ createBoard();
 
 const cells = Array.from(document.querySelectorAll('#game-board div')) as HTMLElement[];
 
-// テトリミノを描画
-function draw() {
-    currentTetromino.forEach(index => {
-        cells[currentPosition + index].classList.add('active');
-    });
-}
-
-// テトリミノを削除
-function undraw() {
-    currentTetromino.forEach(index => {
-        cells[currentPosition + index].classList.remove('active');
-    });
-}
-
-// テトリミノを下に移動させる関数
-function moveDown() {
-    undraw();
-    currentPosition += width;
-    draw();
-}
+draw(currentTetromino, currentPosition, cells);
 
 // テトリミノを1秒ごとに下に移動
-setInterval(moveDown, 1000);
+setInterval(() =>{
+   currentPosition = moveDown(width, currentTetromino, currentPosition, cells);
+    draw(currentTetromino, currentPosition, cells);
+}, 100);
