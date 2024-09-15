@@ -1,6 +1,5 @@
 // game.ts
-
-const gameBoard = document.getElementById('game-board')!;
+import { gameBoard } from './gameBoard.js';
 
 const width = 10; // ボードの横幅 (10列)
 let currentPosition = 4; // 初期のテトリミノの位置
