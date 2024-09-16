@@ -21,9 +21,13 @@ body {
     height: 30px;
     background-color: #fff;
 }
+
 /* styles.css */
 #game-board div.active {
     background-color: cyan;
+}
+#game-board div.fixed {
+    background-color: rgba(0, 255, 255, 0.619);
 }
 
 #game-board div.taken {

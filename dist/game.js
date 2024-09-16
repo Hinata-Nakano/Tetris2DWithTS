@@ -1,31 +1,22 @@
 // game.ts
-import { gameBoard } from './gameBoard.js';
+import { createBoard } from './createBoard.js';
 import { moveDown, draw } from './movedown.js';
+import { generateTetromino } from './generate.js';
 const width = 10; // ボードの横幅 (10列)
 let currentPosition = 4; // 初期のテトリミノの位置
-// I字型テトリミノの定義（4x1）
-const tetrominoI = [
-    [1, width + 1, width * 2 + 1, width * 3 + 1]
-];
 // 現在のテトリミノ形状
-let currentTetromino = tetrominoI[0];
-// ゲームボードを作成
-function createBoard() {
-    for (let i = 0; i < 200; i++) {
-        const cell = document.createElement('div');
-        gameBoard.appendChild(cell);
-    }
-    for (let i = 0; i < 10; i++) {
-        const cell = document.createElement('div');
-        cell.classList.add('taken'); // ボトムラインとして固定
-        gameBoard.appendChild(cell);
-    }
-}
+let currentTetromino = generateTetromino(width);
 createBoard();
 const cells = Array.from(document.querySelectorAll('#game-board div'));
 draw(currentTetromino, currentPosition, cells);
 // テトリミノを1秒ごとに下に移動
-setInterval(() => {
-    currentPosition = moveDown(width, currentTetromino, currentPosition, cells);
+const intervalId = setInterval(() => {
+    const result = moveDown(width, currentTetromino, currentPosition, cells);
+    currentPosition = result.position;
+    currentTetromino = result.tetromino;
+    if (result.gameOver) {
+        clearInterval(intervalId);
+        return;
+    }
     draw(currentTetromino, currentPosition, cells);
 }, 100);
