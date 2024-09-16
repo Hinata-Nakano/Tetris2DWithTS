@@ -16,8 +16,8 @@ export function generateTetromino(width) {
         [0, 1, width, width + 1], //四角
         [1, width, width + 1, width + 2], // T字
         [0, 1, width + 1, width + 2], // Z字
-        [0, 1, 2, width + 1], // L字
-        [0, 1, 2, width + 2], // L字反転
+        [0, 1, 2, width + 2], // 逆L字
+        [0, 1, 2, width], // L字
     ];
     // グローバルな SeededRandom インスタンスを使用
     const index = Math.floor(globalRandom.random() * tetrominos.length);

@@ -14,15 +14,18 @@ class SeededRandom {
 }
 // グローバルな SeededRandom インスタンスを作成
 const globalRandom = new SeededRandom(Date.now());
-
+export interface MinoType {
+    mino: number[];
+    rotate: number[];
+}
 export function generateTetromino(width: number): number[] {
     const tetrominos = [
         [0, 1, 2, 3],
         [0, 1, width, width+1], //四角
         [1, width, width+1, width+2],// T字
         [0, 1, width+1, width+2],// Z字
-        [0, 1, 2, width+1],// L字
-        [0, 1, 2, width+2],// L字反転
+        [0, 1, 2, width+2],// 逆L字
+        [0, 1, 2, width],// L字
     ];
 
     // グローバルな SeededRandom インスタンスを使用
