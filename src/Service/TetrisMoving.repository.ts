@@ -48,9 +48,17 @@ export class TetrisGame {
             return;
         }
         if (event.key === "ArrowLeft") {
+            if(this.currentTetromino.some
+                (index => this.cells[index + this.currentPosition].classList.contains('leftWall'))){
+                return;
+            }
             this.moveHorizontal(-1);
         }
         if (event.key === "ArrowRight") {
+            if(this.currentTetromino.some
+                (index => this.cells[index  + this.currentPosition].classList.contains('rightWall'))){
+                return;
+            }
             this.moveHorizontal(1);
         }
         if (event.key === "ArrowDown") {

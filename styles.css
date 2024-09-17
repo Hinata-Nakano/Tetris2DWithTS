@@ -35,3 +35,11 @@ body {
     height: 30px;
     background-color: #f90101;
 }
+#game-board div.rightWall{
+    width: 30px;
+    height: 30px;
+}
+#game-board div.leftWall{
+    width: 30px;
+    height: 30px;
+}

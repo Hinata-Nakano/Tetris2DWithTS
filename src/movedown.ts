@@ -1,5 +1,6 @@
 import { generateTetromino } from './generate.js';
 import { handleGameOver } from './HandlegameOver.js';
+import { EraserRepository } from './Service/Eraser.repository.js';
 
 // テトリミノを下に移動させる関数
 export function moveDown(width: number, currentTetromino: number[], currentPosition: number, cells: HTMLElement[]):{ position: number, tetromino: number[], gameOver: boolean } {
@@ -8,10 +9,18 @@ export function moveDown(width: number, currentTetromino: number[], currentPosit
     undraw(currentTetromino, currentPosition, cells);
     currentPosition += width;
     }else{
+        const eraser = new EraserRepository(cells);
         //fixされた物にクラスリストを追加
         currentTetromino.forEach(index => {
             cells[currentPosition + index].classList.add('fixed');
-        }); //fixされた物にクラスリストを追加
+        });  
+        currentTetromino.forEach(index => {
+            cells[currentPosition + index].classList.remove('active');
+        }); //fixされた物からactiveを削除
+
+//ここで、消去できる行があるかどうかを確認消去
+        eraser.erase();
+
         //次のテトリミノを生成
         currentTetromino = generateTetromino(width);
         currentPosition = 4;
