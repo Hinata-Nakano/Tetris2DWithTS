@@ -20,13 +20,33 @@ export class EraserRepository {
                 this.cells.splice(line * this.width, this.width);
             });
             // 新しい行を追加
-            const newLines = Array(lines.length).fill(null).map(() => Array(this.width).fill(null).map(() => {
-                const newCell = document.createElement('div');
-                newCell.classList.add('cell');
-                return newCell;
-            })).flat();
-            this.cells.unshift(...newLines);
+            /*const newLines = Array(lines.length).fill(null).map(() =>
+               Array(this.width).fill(null).map(() => {
+                   const newCell = document.createElement('div');
+                   return newCell;
+               })
+           ).flat();*/
+            for (let l = 0; l < lines.length; l++) {
+                const newLines = [];
+                for (let i = 0; i < this.width; i++) {
+                    const Newcell = document.createElement('div');
+                    if (i % 10 === 0) {
+                        Newcell.classList.add('leftWall');
+                    }
+                    if (i % 10 === 9) {
+                        Newcell.classList.add('rightWall');
+                    }
+                    newLines.push(Newcell);
+                }
+                this.cells.unshift(...newLines);
+            }
             //上の行を下に移動
+            gameBoard.innerHTML = '';
+            this.cells.map((cell, index) => {
+                if (200 <= index && index < 210) {
+                    cell.classList.add('taken');
+                }
+            });
             this.cells.forEach(cell => gameBoard.appendChild(cell));
         }
     }
